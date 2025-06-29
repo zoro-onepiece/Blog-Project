@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= post.title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .post-actions {
+            margin-top: 1.5rem;
+            /* Adds vertical space between the post content and the buttons */
+            display: flex;
+            /* Makes this div a flex container, allowing its children (buttons) to align horizontally */
+            gap: 10px;
+            /* Adds 10 pixels of space between the flex items (buttons) */
+            justify-content: center;
+            width: 100%;
+            /* Aligns the flex items (buttons) to the right end of the container */
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+.post-actions .btn {
+        /* flex-grow: 1; Allow buttons to grow to fill available space */
+        /* max-width: 200px; Optional: Set a max width so they don't get too wide on large screens */
+        /* You can adjust max-width or remove it based on desired button size */
+    }
+
+        .back-btn {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <div class="post-container">
+        <a href="/" class="btn btn-secondary back-btn">← Back to all posts</a>
+        <img src="<%= post.image %>" class="post-image" alt="Post image">
+        <h1>
+            <%= post.title %>
+        </h1>
+        <p class="text-muted">
+            <%= post.date %>
+        </p>
+        <div class="post-content">
+            <p>
+                <%= post.content %>
+            </p>
+        </div>
+    </div>
+    <div class="post-actions mb-4">
+        
+        <a href="/edit/<%= post.id %>" class="btn btn-primary">Edit Post</a>
+        <form action="/posts/<%= post.id %>?_method=DELETE" method="POST"
+            onsubmit="return confirm('Are you sure you want to delete this post?');">
+
+            <button type="submit" class="btn btn-danger">Delete Post</button>
+        </form>
+    </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
